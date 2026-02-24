@@ -12,7 +12,7 @@ CPU     | Octa-core (4x2.4 GHz Cortex-A78 & 4x1.8 GHz Cortex-A55)
 GPU     | Adreno 710
 Memory  | 8 GB RAM (LPDDR4X)
 Shipped Android Version | Android 15, up to 2 major Android upgrades
-Storage | 128 GB | 256 GB (UFS 2.2)
+Storage | 128 GB / 256 GB (UFS 2.2)
 Battery | Non-removable Li-Po 5000 mAh battery
 Display | AMOLED, 1B colors, 120Hz, HDR, 3000 nits (peak), 1220 x 2712 pixels, 20:9 ratio (~444 ppi density)
 Camera  | 50MP (Wide) + 13MP (Ultra-wide) + 32MP (Selfie)
