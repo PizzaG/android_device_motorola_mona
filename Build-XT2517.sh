@@ -87,7 +87,7 @@ mka adbd recoveryimage
 echo
 echo " Recovery Should Be Built"
 echo ""
-mv $OUT/recovery.img ~/Desktop/Release_Test/Mona/TWRP_12.1-Stylus_5G_2025-XT2517.img
+mv $OUT/recovery.img ~/Desktop/TWRP_12.1-Stylus_5G_2025-XT2517.img
 #m installclean
 read
 #############################
