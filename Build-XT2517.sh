@@ -69,10 +69,9 @@ startup_screen_size() {
     done
 }
 
-
 startup_screen_size
 
-# Print Rom Name To Terminal
+# Print Recovery Name To Terminal
 echo -ne "\033]0;$APP_NAME\007"
 
 ## TWRP
@@ -80,7 +79,6 @@ echo -ne "\033]0;$APP_NAME\007"
 export USE_CCACHE=1
 . build/envsetup.sh
 m clean
-#m installclean
 lunch twrp_mona-eng
 echo ""
 mka adbd recoveryimage
@@ -88,8 +86,6 @@ echo
 echo " Recovery Should Be Built"
 echo ""
 mv $OUT/recovery.img ~/Desktop/TWRP_12.1-Stylus_5G_2025-XT2517.img
-#m installclean
 read
 #############################
 #############################
-
