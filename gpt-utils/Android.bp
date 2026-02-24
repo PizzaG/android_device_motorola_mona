@@ -1,0 +1,33 @@
+//
+// Copyright (C) 2026 The Android Open Source Project
+// Copyright (C) 2026 SebaUbuntu's TWRP Device Tree Generator
+// Copyright (C) 2019-Present A-Team Digital Solutions
+// Copyright (C) 2024 sosRR
+//
+
+cc_library {
+    name: "libgptutils.moto_sm8475",
+    vendor: true,
+    recovery_available: true,
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libz",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-D_GENERIC_KERNEL_HEADERS",
+        "-D_BSG_FRAMEWORK_KERNEL_HEADERS",
+    ],
+    srcs: [
+        "gpt-utils.cpp",
+        "recovery-ufs-bsg.cpp",
+    ],
+    owner: "qti",
+    header_libs: [
+        "device_kernel_headers",
+    ],
+    export_include_dirs: ["."],
+}

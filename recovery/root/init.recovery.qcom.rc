@@ -1,0 +1,29 @@
+#
+# Copyright (C) 2026 The Android Open Source Project
+# Copyright (C) 2026 SebaUbuntu's TWRP Device Tree Generator
+# Copyright (C) 2019-Present A-Team Digital Solutions
+# Copyright (C) 2024 sosRR
+#
+
+import /init.recovery.qcom_decrypt.rc
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    # Load kernel modules and ADSP firmware for PMIC
+    wait /sys/kernel/boot_adsp/boot
+    start runatboot
+    wait /sys/class/power_supply/battery
+
+on post-fs
+    start boot-hal-1-2
+
+on boot
+    start health-hal-2-1
+
+service runatboot /system/bin/runatboot.sh
+    user root
+    group root
+    oneshot
+    seclabel u:r:recovery:s0
