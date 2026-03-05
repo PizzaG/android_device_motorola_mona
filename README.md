@@ -28,7 +28,7 @@ Current State Of Features:
 - [X] Correct screen/recovery size
 - [X] Working touch, display
 - [X] Screen goes off and on
-- [?] Backup/restore to/from internal/external storage and adb
+- [ ] Backup/restore to/from internal/external storage and adb
 - [X] Poweroff
 - [X] Reboot to system, bootloader, recovery, fastboot, edl
 - [X] ADB (including sideload)
@@ -40,7 +40,6 @@ Current State Of Features:
 - [X] Input devices via USB-OTG
 - [X] USB mass storage export
 - [X] Correct date
-- [X] OrangeFox Flashlight
 - [X] Battery level
 - [X] Set brightness
 - [X] Vibrate and set vibration
