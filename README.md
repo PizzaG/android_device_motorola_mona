@@ -28,7 +28,7 @@ Current State Of Features:
 - [X] Correct screen/recovery size
 - [X] Working touch, display
 - [X] Screen goes off and on
-- [?] Backup/restore to/from internal/external storage and adb
+- [ ] Backup/restore to/from internal/external storage and adb
 - [X] Poweroff
 - [X] Reboot to system, bootloader, recovery, fastboot, edl
 - [X] ADB (including sideload)
