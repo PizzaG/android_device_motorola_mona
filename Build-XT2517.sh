@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_NAME="TWRP 12.1 - XT2517" 
+APP_NAME="OFRP 12.1 - XT2517" 
 
 # Function To Set Startup Screen Placement
 startup_screen_size() {
@@ -74,18 +74,22 @@ startup_screen_size
 # Print Recovery Name To Terminal
 echo -ne "\033]0;$APP_NAME\007"
 
-## TWRP
+## OFRP
 #############################
 export USE_CCACHE=1
 . build/envsetup.sh
 m clean
 lunch twrp_mona-eng
 echo ""
-mka adbd recoveryimage
-echo
-echo " Recovery Should Be Built"
+echo "Adding Magisk From Device Tree Prebuilt Folder"
+cp -r device/motorola/mona/prebuilt/Magisk.zip vendor/recovery/FoxFiles/Magisk.zip
+sleep 5
 echo ""
-mv $OUT/recovery.img ~/Desktop/TWRP_12.1-Stylus_5G_2025-XT2517.img
+mka adbd recoveryimage
+echo ""
+echo "Recovery Should Be Built"
+echo ""
+mv $OUT/recovery.img ~/Desktop/OFRP_12.1-Stylus_5G_2025-XT2517.img
 read
 #############################
 #############################
