@@ -40,6 +40,7 @@ Current State Of Features:
 - [X] Input devices via USB-OTG
 - [X] USB mass storage export
 - [X] Correct date
+- [X] SkyHawk Flashlight
 - [X] Battery level
 - [X] Set brightness
 - [X] Vibrate and set vibration

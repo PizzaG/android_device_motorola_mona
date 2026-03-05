@@ -19,6 +19,9 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # Inherit from mona device
 $(call inherit-product, device/motorola/mona/device.mk)
 
+# Inherit SHRP Configuration
+$(call inherit-product, device/motorola/mona/SHRP.mk)
+
 PRODUCT_DEVICE := mona
 PRODUCT_NAME := twrp_mona
 PRODUCT_BRAND := Moto_G

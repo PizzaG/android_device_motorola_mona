@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_NAME="TWRP 12.1 - XT2517" 
+APP_NAME="SHRP 12.1 - XT2517" 
 
 # Function To Set Startup Screen Placement
 startup_screen_size() {
@@ -74,18 +74,24 @@ startup_screen_size
 # Print Recovery Name To Terminal
 echo -ne "\033]0;$APP_NAME\007"
 
-## TWRP
+## SHRP
 #############################
 export USE_CCACHE=1
 . build/envsetup.sh
 m clean
 lunch twrp_mona-eng
 echo ""
+echo "Adding Magisk From Device Tree Prebuilt Folder"
+cp -r device/motorola/mona/prebuilt/Magisk.zip vendor/shrp/extras/c_magisk.zip
+sleep 5
+echo ""
 mka adbd recoveryimage
 echo ""
 echo "Recovery Should Be Built"
 echo ""
-mv $OUT/recovery.img ~/Desktop/TWRP_12.1-Stylus_5G_2025-XT2517.img
+mv $OUT/recovery.img ~/Desktop/SHRP_12.1-Stylus_5G_2025-XT2517.img
+mv $OUT/SHRP-Reborn_v*_Stable*.zip ~/Desktop/SHRP-12.1-Stylus_5G_2025-XT2517.zip
+mv $OUT/SHRP*_Addon*.zip ~/Desktop/SHRP-AddonRescue-Stylus_5G_2025-XT2517.zip
 read
 #############################
 #############################
