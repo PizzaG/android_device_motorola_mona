@@ -5,7 +5,7 @@
 # Copyright (C) 2024 sosRR
 #
 
-# Inherit from those products. Most specific first.
+# Inherit Product Configuration. Most Specific First.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
@@ -13,10 +13,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# Inherit some common OFRP/TWRP stuff.
+# Inherit OFRP/TWRP Configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from mona device
+# Inherit Mona Device
 $(call inherit-product, device/motorola/mona/device.mk)
 
 # Inherit OFRP Configuration

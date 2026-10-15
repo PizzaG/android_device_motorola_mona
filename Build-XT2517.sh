@@ -78,8 +78,8 @@ echo -ne "\033]0;$APP_NAME\007"
 #############################
 export USE_CCACHE=1
 . build/envsetup.sh
-m clean
 lunch twrp_mona-eng
+m clean
 echo ""
 echo "Adding Magisk From Device Tree Prebuilt Folder"
 cp -r device/motorola/mona/prebuilt/Magisk.zip vendor/recovery/FoxFiles/Magisk.zip
@@ -89,7 +89,11 @@ mka adbd recoveryimage
 echo ""
 echo "Recovery Should Be Built"
 echo ""
-mv $OUT/recovery.img ~/Desktop/OFRP_12.1-Stylus_5G_2025-XT2517.img
+mkdir ~/Desktop/Release_Test >/dev/null 2>&1
+mkdir ~/Desktop/Release_Test/Mona >/dev/null 2>&1
+mv $OUT/OrangeFox-*.img ~/Desktop/Release_Test/Mona/OrangeFox_12.1-Stylus_5G_2025-XT2517.img
+mv $OUT/OrangeFox-*.zip ~/Desktop/Release_Test/Mona/OrangeFox_12.1-Stylus_5G_2025-XT2517.zip
+m clean
 read
 #############################
 #############################

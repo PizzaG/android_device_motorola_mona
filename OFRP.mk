@@ -4,14 +4,13 @@
 # Copyright (C) 2019-Present A-Team Digital Solutions
 # Copyright (C) 2024 sosRR
 #
+# OrangeFox Build Configuration
 
 DEVICE_PREBUILT_PATH := device/motorola/mona/prebuilt
 
-# OrangeFox Build Configuration
 OF_MAINTAINER := PizzaG
-FOX_BUILD_TYPE := A-Team_v0.01
-FOX_VERSION := 12.1
-#FOX_MAINTAINER_PATCH_VERSION := 12
+FOX_BUILD_TYPE := A-Team_v2.2
+FOX_MAINTAINER_PATCH_VERSION := 12
 OF_AB_DEVICE_WITH_RECOVERY_PARTITION := 1
 OF_FLASHLIGHT_ENABLE := 1
 OF_HIDE_NOTCH := 1

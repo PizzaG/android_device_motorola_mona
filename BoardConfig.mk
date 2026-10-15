@@ -10,12 +10,13 @@ DEVICE_PREBUILT_PATH := device/motorola/mona/prebuilt
 
 # A-Team Maintainer Info
 TW_MAINTAINER := PizzaG
-TW_DEVICE_VERSION := -v0.01
+TW_DEVICE_VERSION := A-Team_Release-v2.2
 RECOVERY_VARIANT := OFRP_12.1
 
 # A/B
 AB_OTA_UPDATER := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
@@ -29,6 +30,13 @@ AB_OTA_PARTITIONS += \
     vendor \
     vendor_dlkm \
     vendor_boot
+
+# Anti Rollback
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+PLATFORM_VERSION := 99.87.36
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
 # Architecture
 TARGET_ARCH := arm64
@@ -91,13 +99,6 @@ BOARD_USES_FULL_RECOVERY_IMAGE := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 
-# Anti Rollback
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-PLATFORM_VERSION := 99.87.36
-PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
-
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
@@ -142,13 +143,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 RECOVERY_SDCARD_ON_DATA := true
 
-# TWRP Crypto
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-BOARD_USES_QCOM_FBE_DECRYPTION := true
-TW_USE_FSCRYPT_POLICY := 2
-
 # TWRP Configuration
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
@@ -161,7 +155,7 @@ TW_BACKUP_EXCLUSIONS := /data/fonts
 TW_NO_SCREEN_BLANK := true
 TW_MAX_BRIGHTNESS := 16120
 TW_DEFAULT_BRIGHTNESS := 11296
-TW_FRAMERATE := 60
+TW_FRAMERATE := 120
 TW_HAS_EDL_MODE := true
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone39/temp
 TW_EXCLUDE_DEFAULT_USB_INIT := true
@@ -174,38 +168,37 @@ TW_INCLUDE_FASTBOOTD := true
 TW_INCLUDE_PYTHON := true
 TW_EXCLUDE_APEX := true
 
-# TWRP Load Modules
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko \
-               bm_adsp_ulog.ko \
-               aw882xx_k419.ko \
-               goodix_brl_mmi.ko \
-               gpr_dlkm.ko \
-               mmi_annotate.ko \
-               mmi_info.ko \
-               mmi_relay.ko \
-               mmi_charger.ko \
-               mmi_sys_temp.ko \
-               moto_f_mass_storage.ko \
-               moto_f_usbnet.ko \
-               msm_drm.ko \
-               phy-msm-ssusb-qmp.ko \
-               qti_glink_charger.ko \
-               qpnp_adaptive_charge.ko \
-               q6_pdr_dlkm.ko \
-               q6_notifier_dlkm.ko \
-               qdss_bridge.ko \
-               sensors_class.ko \
-               snd_event_dlkm.ko \
-               spf_core_dlkm.ko \
-               ssusb-redriver-ps5169.ko \
-               stmicro_mmi.ko \
-               sx937x_sar.ko \
-               touchscreen_mmi.ko \
-               usb_f_qdss.ko"
+# TWRP Crypto
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+BOARD_USES_QCOM_FBE_DECRYPTION := true
+TW_USE_FSCRYPT_POLICY := 2
+
+# TWRP Debug Configuration
+TARGET_USES_LOGD := true
+TWRP_EVENT_LOGGING := false
+TWRP_INCLUDE_LOGCAT := true
+TARGET_RECOVERY_DEVICE_MODULES += debuggerd
+TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
+
+# TWRP Module Loading
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/vendor_dlkm/lib/modules)\")
+
+# TWRP Statusbar Spacing
+TW_Y_OFFSET := 25  # Lower Moves Top Up
+TW_H_OFFSET := -25  # Lower Moves Bottom Down
+
+# TWRP Statusbar Icon Flags
+TW_STATUS_ICONS_ALIGN := center
+TW_CUSTOM_CLOCK_POS := 50
+TW_CUSTOM_CPU_POS := 280
+TW_CUSTOM_BATTERY_POS := 790
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+
 BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
@@ -216,3 +209,9 @@ BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+
+BOARD_AVB_VBMETA_VENDOR := vendor vendor_dlkm
+BOARD_AVB_VBMETA_VENDOR_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 3

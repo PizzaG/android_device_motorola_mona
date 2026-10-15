@@ -5,9 +5,7 @@
 # Copyright (C) 2024 sosRR
 #
 
-# Soong Namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+LOCAL_PATH := device/motorola/mona
 
 # API
 BOARD_SHIPPING_API_LEVEL := 31
@@ -45,31 +43,30 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
+# Copy Kernel Modules
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*.ko,$(LOCAL_PATH)/recovery/root/vendor_dlkm/lib/modules,$(TARGET_COPY_OUT_RECOVERY)/root/vendor_dlkm/lib/modules)
+
 # Crypto
 PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
 
-# Dynamic partitions
+# Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# F2FS utilities
+# F2FS Utilities
 PRODUCT_PACKAGES += \
     sg_write_buffer \
     f2fs_io \
-    check_f2fs
+    check_f2fs \
+    mtpfs
 
 # FastbootD
 PRODUCT_PACKAGES += \
     fastbootd \
     android.hardware.fastboot@1.1-impl-mock
 
-# Set Vendor Patch Level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bootimage.build.date.utc=0 \
-    ro.build.date.utc=0
-
-# OEM otacert
+# OEM OTA Cert
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(LOCAL_PATH)/security/ota
 
@@ -119,15 +116,25 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.7.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.8.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.9.so \
-    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.1.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.10.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.11.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so
 
-# Namespace Definition For librecovery_updater
+# Set Vendor Patch Level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bootimage.build.date.utc=0 \
+    ro.build.date.utc=0
+
+# Soong Namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
+
+# Soong Namespace Definition For librecovery_updater
 SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
-# Copy Modules
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*.ko,$(LOCAL_PATH)/root/vendor_dlkm/lib/modules,$(TARGET_COPY_OUT_RECOVERY)/root/vendor_dlkm/lib/modules)
+# TZDATA
+PRODUCT_PACKAGES += \
+    tzdata_twrp

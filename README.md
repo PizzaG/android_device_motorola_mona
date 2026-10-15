@@ -1,7 +1,7 @@
 Recovery Configuration For Moto G Stylus 5G 2025 (Codenamed "mona")
 =========================================
 
-The Motorola Moto G Stylus 5G 2025 (codenamed _"mona"_) is a mid-range smartphone from Motorola Mobility announced April 8th 2025
+The Motorola Moto G Stylus 5G 2025 (codenamed _"mona"_) is a mid-range smartphone from Motorola Mobility announced April 2025
 
 ## Device specifications
 
@@ -28,7 +28,7 @@ Current State Of Features:
 - [X] Correct screen/recovery size
 - [X] Working touch, display
 - [X] Screen goes off and on
-- [ ] Backup/restore to/from internal/external storage and adb
+- [X] Backup/restore to/from internal/external storage and adb
 - [X] Poweroff
 - [X] Reboot to system, bootloader, recovery, fastboot, edl
 - [X] ADB (including sideload)
@@ -50,7 +50,6 @@ Current State Of Features:
 # Building
 *Build Script Included
 ```bash
-export ALLOW_MISSING_DEPENDENCIES=true
 source build/envsetup.sh
 lunch twrp_mona-eng
 mka recoveryimage -j$(nproc --all)
