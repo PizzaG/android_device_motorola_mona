@@ -8,6 +8,7 @@
 #<mount_point>          <fstype>    <device>           <device2>                    <flags>
 # Boot Partitions
 /boot                   emmc        /dev/block/bootdevice/by-name/boot              flags=display="Boot";slotselect;backup=1;flashimg=1
+/init_boot              emmc        /dev/block/bootdevice/by-name/init_boot         flags=display="Init Boot";slotselect;backup=1;flashimg=1
 /dtbo                   emmc        /dev/block/bootdevice/by-name/dtbo              flags=display="DTBO";slotselect;backup=1;flashimg=1
 /vendor_boot            emmc        /dev/block/bootdevice/by-name/vendor_boot       flags=display="Vendor Boot";slotselect;backup=1;flashimg=1
 /vbmeta                 emmc        /dev/block/bootdevice/by-name/vbmeta            flags=display="VBMeta";slotselect;backup=1;flashimg=1
